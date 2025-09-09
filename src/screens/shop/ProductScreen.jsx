@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 
-const ProductScreen = () => {
-  return (
-    <View>
-      <Text>ProductScreen</Text>
-    </View>
-  )
+const ProductScreen = ({ route }) => {
+    const { product } = route.params
+    return (
+        <View>
+            <Text>{product.title}</Text>
+        </View>
+    )
 }
 
 export default ProductScreen
