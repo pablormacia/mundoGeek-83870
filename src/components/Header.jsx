@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { colors } from '../theme/colors'
 
 const Header = ({ subtitle }) => {
-  console.log("Header montado")
+  //console.log("Header montado")
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Mundo Geek</Text>

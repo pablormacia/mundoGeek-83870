@@ -1,12 +1,14 @@
-import { StyleSheet, Text, View, FlatList, Image, Pressable } from 'react-native'
-import categories from '../data/categories.json'
-import FlatCard from '../components/FlatCard'
-import TextKarlaRegular from '../components/customText/TextKarlaRegular'
+import { StyleSheet, Text, View, FlatList, Image, Pressable, useWindowDimensions } from 'react-native'
+import categories from '../../data/categories.json'
+import FlatCard from '../../components/FlatCard'
+import TextKarlaRegular from '../../components/customText/TextKarlaRegular'
+import { useState,useEffect } from 'react'
 
-const CategoriesScreen = ({setCategorySelected}) => {
+const CategoriesScreen = ({navigation}) => {
+    const [newNumColumns, setNunColumns] = useState(1)
 
     const renderCategoryItem = ({ item }) => (
-        <Pressable onPress={()=>setCategorySelected(item.title)}>
+        <Pressable onPress={()=>navigation.navigate("Productos",{category:item.title})}>
             <FlatCard style={styles.categoriesContainer}>
                 <TextKarlaRegular>{item.title}</TextKarlaRegular>
                 <Image source={{ uri: item.image }}
@@ -18,12 +20,23 @@ const CategoriesScreen = ({setCategorySelected}) => {
         </Pressable>
     )
 
+    const {width, height} = useWindowDimensions()
+    
+    useEffect(()=>{
+        if(width>height){
+            setNunColumns(3)
+        }
+    },[width, height])
+
+    //console.log("Dimensiones: ", width, height)
+
     return (
         <View>
             <FlatList
                 data={categories}
                 renderItem={renderCategoryItem}
                 keyExtractor={item => item.id}
+                //numColumns={3}
             />
         </View>
     )

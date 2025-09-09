@@ -1,25 +1,28 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native'
-import products from '../data/products.json'
-import FlatCard from '../components/FlatCard'
+import products from '../../data/products.json'
+import FlatCard from '../../components/FlatCard'
 import { useEffect, useState } from 'react'
-import Search from '../components/Search'
+import Search from '../../components/Search'
 
-const ProductsScreen = ({ category }) => {
-  //console.log("Category en ProductsScreen: ",category)
+const ProductsScreen = ({ route }) => {
   const [productsFiltered, setProductsFiltered] = useState([])
   const [keyword, setKeyword] = useState("")
-  //console.log("ProductsScreen montado")
-  //console.log("Keyword: ", keyword)
+
+
+  //console.log(route)
+
+  const { category } = route.params
+
 
   useEffect(() => {
     const productsFilteredByCategory = products.filter(
       product => product.category.toLowerCase() == category.toLowerCase()
     )
-    if(keyword){
+    if (keyword) {
       setProductsFiltered(productsFilteredByCategory.filter(
-        product=>product.title.toLowerCase().includes(keyword.toLowerCase())
+        product => product.title.toLowerCase().includes(keyword.toLowerCase())
       ))
-    }else{
+    } else {
       setProductsFiltered(productsFilteredByCategory)
     }
   }, [keyword])
@@ -33,7 +36,7 @@ const ProductsScreen = ({ category }) => {
   )
   return (
     <>
-      <Search setKeyword={setKeyword} keyword={keyword}/>
+      <Search setKeyword={setKeyword} keyword={keyword} />
       <FlatList
         data={productsFiltered}
         renderItem={renderProductItem}
