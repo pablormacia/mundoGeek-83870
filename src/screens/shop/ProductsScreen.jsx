@@ -1,16 +1,20 @@
 import { StyleSheet, Text, View, FlatList,Pressable } from 'react-native'
-import products from '../../data/products.json'
+//import products from '../../data/products.json'
 import FlatCard from '../../components/FlatCard'
 import { useEffect, useState } from 'react'
 import Search from '../../components/Search'
+import { useSelector } from 'react-redux'
 
 const ProductsScreen = ({ route,navigation }) => {
   const [productsFiltered, setProductsFiltered] = useState([])
   const [keyword, setKeyword] = useState("")
 
   //console.log(route)
+  const products = useSelector(state=>state.shopReducer.products)
 
-  const { category } = route.params
+  //const { category } = route.params
+
+  const category = useSelector(state=>state.shopReducer.categorySelected)
 
   useEffect(() => {
     const productsFilteredByCategory = products.filter(
