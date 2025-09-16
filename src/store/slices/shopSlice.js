@@ -16,8 +16,8 @@ const shopSlice = createSlice({
             console.log("Action en selectCategory", action)
             state.categorySelected = action.payload
         },
-        filterProducts: (state, action) => {
-            state.productsFilteredByCategory = state.products.filter(product => product.category.toLowerCase() === action.payload.toLowerCase())
+        filterProducts: (state) => {
+            state.productsFilteredByCategory = state.products.filter(product => product.category.toLowerCase() === state.categorySelected.toLowerCase())
         },
         selectProduct: (state, action) => {
             state.productSelected = action.payload

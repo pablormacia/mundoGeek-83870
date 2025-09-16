@@ -14,12 +14,14 @@ const ProductsScreen = ({ route,navigation }) => {
 
   //const { category } = route.params
 
-  const category = useSelector(state=>state.shopReducer.categorySelected)
+  //const category = useSelector(state=>state.shopReducer.categorySelected)
+
+  const productsFilteredByCategory = useSelector(state=>state.shopReducer.productsFilteredByCategory)
 
   useEffect(() => {
-    const productsFilteredByCategory = products.filter(
+    /* const productsFilteredByCategory = products.filter(
       product => product.category.toLowerCase() == category.toLowerCase()
-    )
+    ) */
     if (keyword) {
       setProductsFiltered(productsFilteredByCategory.filter(
         product => product.title.toLowerCase().includes(keyword.toLowerCase())

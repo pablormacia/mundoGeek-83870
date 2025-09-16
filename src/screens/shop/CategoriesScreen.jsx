@@ -4,7 +4,7 @@ import FlatCard from '../../components/FlatCard'
 import TextKarlaRegular from '../../components/customText/TextKarlaRegular'
 import { useState,useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { selectCategory } from '../../store/slices/shopSlice'
+import { selectCategory, filterProducts } from '../../store/slices/shopSlice'
 
 const CategoriesScreen = ({navigation}) => {
     const [newNumColumns, setNunColumns] = useState(1)
@@ -15,6 +15,7 @@ const CategoriesScreen = ({navigation}) => {
 
     const handleSelectCategory = (category)=>{
         dispatch(selectCategory(category))
+        dispatch(filterProducts())
         navigation.navigate("Productos")
     }
 
