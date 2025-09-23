@@ -1,13 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
-import Header from './src/components/Header';
 import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
-import { NavigationContainer } from '@react-navigation/native';
-import TabsNavigator from './src/navigation/TabsNavigator';
 import { mundoGeekStore } from './src/store';
 import { Provider } from 'react-redux';
+import MainNavigator from './src/navigation/MainNavigator';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,10 +29,8 @@ export default function App() {
 
   return (
     <Provider store={mundoGeekStore}>
-      <NavigationContainer>
-        <TabsNavigator />
+        <MainNavigator/>
         <StatusBar style="light" />
-      </NavigationContainer>
     </Provider>
   );
 }
