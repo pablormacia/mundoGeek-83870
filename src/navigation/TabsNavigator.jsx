@@ -1,6 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CartStackNavigator from './CartStackNavigator';
 import ShopStackNavigator from './ShopStackNavigator';
+import ProfileStackNavigator from './ProfileStackNavigator';
 import { StyleSheet } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { colors } from '../theme/colors';
@@ -36,6 +37,18 @@ const TabsNavigator = () => {
           tabBarIcon: ({focused})=>
             <Ionicons 
                 name="cart-outline" 
+                size={24}
+                color={focused?colors.darkGray:colors.mediumGray} 
+            />
+        }} 
+      />
+      <Tab.Screen 
+        name="Profile" 
+        component={ProfileStackNavigator} 
+        options={{
+          tabBarIcon: ({focused})=>
+            <Ionicons 
+                name="person-outline" 
                 size={24}
                 color={focused?colors.darkGray:colors.mediumGray} 
             />
