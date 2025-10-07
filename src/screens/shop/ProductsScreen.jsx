@@ -60,11 +60,7 @@ const ProductsScreen = ({ route, navigation }) => {
             keyExtractor={item => item.id}
           />
       }
-      <FlatList
-        data={productsFiltered}
-        renderItem={renderProductItem}
-        keyExtractor={item => item.id}
-      />
+      
     </>
 
   )
