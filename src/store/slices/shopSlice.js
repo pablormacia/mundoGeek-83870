@@ -13,7 +13,7 @@ const shopSlice = createSlice({
     },
     reducers: {
         selectCategory: (state, action) => {
-            console.log("Action en selectCategory", action)
+            //console.log("Action en selectCategory", action)
             state.categorySelected = action.payload
         },
         filterProducts: (state) => {

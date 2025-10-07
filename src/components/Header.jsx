@@ -2,13 +2,28 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 import { colors } from '../theme/colors'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import { useSelector } from 'react-redux';
+import { useSelector,  useDispatch } from 'react-redux';
+import { clearSession } from '../db';
+import { clearUser } from '../store/slices/userSlice';
 
 const Header = ({ subtitle }) => {
   //console.log("Header montado")
   const navigation = useNavigation()
+  const user = useSelector(state => state.userReducer.user)
+
+  const dispatch = useDispatch()
 
   const categorySelected = useSelector(state=>state.shopReducer.categorySelected)
+
+  const handleClearSession = async () => {
+    try {
+      await clearSession()
+    } catch {
+      console.log("Hubo un error al limpiar la sesión")
+    }
+    dispatch(clearUser())
+
+  }
 
   return (
     <View style={styles.container}>
@@ -27,6 +42,13 @@ const Header = ({ subtitle }) => {
           <Ionicons name="chevron-back-outline" size={24} color={colors.white} />
         </Pressable>
         
+      }
+      {
+        user
+        &&
+        <Pressable onPress={handleClearSession}>
+          <Text>Salir</Text>
+        </Pressable>
       }
 
     </View>
